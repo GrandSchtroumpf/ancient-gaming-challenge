@@ -1,8 +1,17 @@
 @use '../style/search';
 
+.logo {
+  transition: transform 0.5s var(--ease-back-in-out);
+  &:hover {
+    transform: rotate(180deg);
+  }
+}
+
 .post-list-page {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--size-2);
   padding: var(--size-2);
 }

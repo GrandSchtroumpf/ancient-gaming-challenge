@@ -1,0 +1,6 @@
+<svg viewBox="0 0 24 24">
+  <circle rx="12" ry="12" fill="none" stroke="var(--surface)" strokeWidth="3"/>
+  <circle rx="12" ry="12" fill="var(--surface-high)" />
+  <circle rx="10" ry="10" fill="var(--primary)" />
+  <circle rx="14" ry="10" fill="var(--primary)"/>
+</svg>

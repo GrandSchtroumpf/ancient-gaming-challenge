@@ -6,3 +6,11 @@
     opacity: 1;
   }
 }
+@keyframes scaleup {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}

@@ -4,12 +4,14 @@ import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
 import { BackIcon } from "~/components/icons/icons";
+import { useToaster } from "~/components/toaster/toaster";
 import type { CreatePostInput } from "~/queries/posts";
 import { createPost } from "~/queries/posts";
 import styles from './index.scss?inline';
 
 export default component$(() => {
   useStyles$(styles);
+  const toaster = useToaster();
   const create = event$(async (_: any, form: HTMLFormElement) => {
     const data = new FormData(form);
     // Force cast type because fromEntries is wrongly strongly typed
@@ -17,8 +19,10 @@ export default component$(() => {
     try {
       await createPost(post);
       form.reset();
+      toaster.add('Your Post has been created 🎊');
     } catch(err) {
       console.error(err);
+      toaster.add('Something wrong happened 😕');
     }
   });
   return <>

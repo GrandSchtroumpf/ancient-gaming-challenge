@@ -15,7 +15,7 @@ export const PostList = component$(({ posts }: PostListProps) => {
     <li key={post.id} id={post.id}>
       <Link href={'/post/' + post.id} class="surface">
         <h3>{post.title}</h3>
-        <p class="secondary">{post.user.username}</p>
+        <p>By <span class="secondary">{post.user.username}</span></p>
       </Link>
     </li>
     ))}

@@ -4,7 +4,9 @@ import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
 import { AddIcon } from "~/components/icons/icons";
-import { Comment, createComment, CreateCommentInput, deletePost, Post} from "~/queries/posts";
+import { useToaster } from "~/components/toaster/toaster";
+import type { Comment, CreateCommentInput, Post} from "~/queries/posts";
+import { createComment, deletePost} from "~/queries/posts";
 import { getPost } from "~/queries/posts";
 import style from './index.scss?inline';
 
@@ -67,14 +69,17 @@ interface PostViewProps {
 }
 const PostView = component$(({ post }: PostViewProps) => {
   const nav = useNavigate();
+  const toaster = useToaster();
   if (!post) return <p>We couldn't find a post for this identifier, sorry 😥</p>;
 
   const remove = event$(async () => {
     try {
       await deletePost(post.id);
       nav('/');
+      toaster.add('Your Post has been created 🎊');
     } catch(err) {
       console.error(err);
+      toaster.add('Something wrong happened 😕');
     }
   })
 

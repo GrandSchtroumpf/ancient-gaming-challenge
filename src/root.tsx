@@ -1,10 +1,12 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
+import { Toaster, useToasterProvider } from './components/toaster/toaster';
 
 import './global.scss';
 
 export default component$(() => {
+  useToasterProvider();
 
   // Just for fun: Change global color every second
   useVisibleTask$(() => {
@@ -27,6 +29,7 @@ export default component$(() => {
       <body lang="en">
         <RouterOutlet />
         <ServiceWorkerRegister />
+        <Toaster />
       </body>
     </QwikCityProvider>
   );
