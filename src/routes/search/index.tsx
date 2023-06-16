@@ -1,5 +1,6 @@
 import type { QwikSubmitEvent} from "@builder.io/qwik";
-import { component$, event$, useSignal, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
+import { useTask$} from "@builder.io/qwik";
+import { component$, event$, useSignal, useStyles$ } from "@builder.io/qwik";
 import type { DocumentHead} from "@builder.io/qwik-city";
 import { useLocation, useNavigate } from "@builder.io/qwik-city";
 import { BackIcon, SearchIcon } from "~/components/icons/icons";
@@ -16,10 +17,11 @@ export default component$(() => {
   const page = useSignal<PostsPage>();
 
   // Trigger on the browser because SSG do not see a difference of pages with searchParams
-  useVisibleTask$(async () => {
+  useTask$(async ({ track }) => {
+    track(() => url);
     const search = url.searchParams.get('search') ?? '{}';
     page.value = await getPostPage(JSON.parse(search));
-  })
+  });
 
   const search = event$((event: QwikSubmitEvent<HTMLFormElement>, form: HTMLFormElement) => {
     const data = new FormData(form);
