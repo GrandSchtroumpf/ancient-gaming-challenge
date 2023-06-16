@@ -24,8 +24,8 @@
     &.leave {
       opacity: 0;
       animation:
-        fadeout .3s var(--ease-in),
-        scaledown .3s var(--ease-in);
+        fade .3s var(--ease-in) reverse,
+        scaleup .3s var(--ease-in) reverse;
     }
   }
 
@@ -38,7 +38,7 @@
     color: var(--overlay);
     box-shadow: var(--overlay-shadow);
     pointer-events: all;
-    max-width: min(500px, 80%);
+    max-width: min(500px, 80vw);
   }
 }
 

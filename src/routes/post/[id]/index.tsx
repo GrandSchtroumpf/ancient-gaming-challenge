@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
 import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
+import { disableForm, enableForm } from "~/components/form/utils";
 import { AddIcon } from "~/components/icons/icons";
 import { useToaster } from "~/components/toaster/toaster";
 import type { Comment, CreateCommentInput, Post} from "~/queries/posts";
@@ -34,14 +35,21 @@ const CommentList = component$(({ comments }: CommentListProps) => {
 
 
 const CommentForm = component$(() => {
+  const toaster = useToaster();
+
   const create = event$(async (_: any, form: HTMLFormElement) => {
     const data = new FormData(form);
     const value = Object.fromEntries(data.entries()) as any as CreateCommentInput;
     try {
+      disableForm(form);
       await createComment(value);
       form.reset();
+      toaster.add('Your comment has been submitted 🎊');
     } catch(err) {
       console.error(err);
+      toaster.add('Something wrong happened 😕');
+    } finally {
+      enableForm(form);
     }
   });
   return <form class="comment-form" preventdefault:submit onSubmit$={create}>
@@ -76,7 +84,7 @@ const PostView = component$(({ post }: PostViewProps) => {
     try {
       await deletePost(post.id);
       nav('/');
-      toaster.add('Your Post has been created 🎊');
+      toaster.add('Your post has been deleted 🎊');
     } catch(err) {
       console.error(err);
       toaster.add('Something wrong happened 😕');

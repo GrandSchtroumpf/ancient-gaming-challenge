@@ -14,3 +14,21 @@
     transform: scale(1);
   }
 }
+
+@keyframes slideup {
+  from {
+    transform: translateY(var(--slide-from, 10px));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes movebackground {
+  from {
+    background-position-x: -100%;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}

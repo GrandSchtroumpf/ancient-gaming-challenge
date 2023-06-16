@@ -14,6 +14,10 @@
   border: none;
   border-bottom: solid 2px var(--outline);
   display: inline-flex;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
   &:hover {
     background-color: color-mix(in oklch, var(--text) var(--alpha-hover), var(--surface));
   }

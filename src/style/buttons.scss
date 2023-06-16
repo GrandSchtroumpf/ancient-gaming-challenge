@@ -1,7 +1,9 @@
 .btn, .btn-fill, .btn-icon, .btn-outline {
   // Use :disabled for buttons & .disabled for anchors
   &:disabled, &.disabled {
-    --on-color: var(--disabled);
+    --color: var(--surface);
+    --on-color: var(--text);
+    opacity: 0.5;
     cursor: default;
     pointer-events: none;
   }

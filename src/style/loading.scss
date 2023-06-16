@@ -1,0 +1,5 @@
+.loading {
+  background-size: 200%;
+  background-image: linear-gradient(to left, var(--surface-lower) 40%, var(--surface) 60%, var(--surface-lower));
+  animation: movebackground 1s linear infinite;
+}

@@ -3,6 +3,7 @@ import { Link } from "@builder.io/qwik-city";
 import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
+import { disableForm, enableForm } from "~/components/form/utils";
 import { BackIcon } from "~/components/icons/icons";
 import { useToaster } from "~/components/toaster/toaster";
 import type { CreatePostInput } from "~/queries/posts";
@@ -17,12 +18,15 @@ export default component$(() => {
     // Force cast type because fromEntries is wrongly strongly typed
     const post = Object.fromEntries(data.entries()) as any as CreatePostInput;
     try {
+      disableForm(form);
       await createPost(post);
       form.reset();
       toaster.add('Your Post has been created 🎊');
     } catch(err) {
       console.error(err);
       toaster.add('Something wrong happened 😕');
+    } finally {
+      enableForm(form);
     }
   });
   return <>
