@@ -9,15 +9,15 @@ export interface PageMetadata {
 }
 
 export interface PageLimitPair {
-  page?: number;
-  limit?: number;
+  page: number;
+  limit: number;
 }
 
 export interface PaginationLinks {
-  first?: PageLimitPair;
-  prev?: PageLimitPair;
-  next?: PageLimitPair;
-  last?: PageLimitPair;
+  first: PageLimitPair;
+  prev: PageLimitPair | null;
+  next: PageLimitPair | null;
+  last: PageLimitPair;
 }
 
 export interface PageQueryOptions {

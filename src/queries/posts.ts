@@ -32,18 +32,10 @@ export async function getPostPage(options?: PageQueryOptions) {
         totalCount
       }
       links {
-        first {
-          page
-        }
-        prev {
-          page
-        }
-        next {
-          page
-        }
-        last {
-          page
-        }
+        first { ...pageLimit }
+        prev { ...pageLimit }
+        next { ...pageLimit }
+        last { ...pageLimit }
       }
       data {
         id
@@ -55,7 +47,12 @@ export async function getPostPage(options?: PageQueryOptions) {
         }
       }
     }
-  }`;
+  }
+  fragment pageLimit on PageLimitPair {
+    page
+    limit
+  }
+  `;
   const { posts } = await get<{ posts: PostsPage }>(query, { options });
   return posts;
 }

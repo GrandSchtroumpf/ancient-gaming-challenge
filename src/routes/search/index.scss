@@ -1,0 +1,22 @@
+@use '../../style/search';
+
+[role="searchbox"] {
+  .btn-icon {
+    animation: fade 0.1s var(--ease-out);
+  }
+  input {
+    border: none;
+    background-color: transparent;
+    &::placeholder {
+      opacity: 1;
+      color: var(--secondary-text);
+    }
+  }
+}
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  padding: var(--size-2);
+}

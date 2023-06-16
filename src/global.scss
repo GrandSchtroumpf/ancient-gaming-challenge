@@ -1,10 +1,15 @@
 @use './style/buttons';
 @use './style/tooltip';
+@use './style/animations.scss';
 
 /*****************/
 /* CSS Variables */
 /*****************/
 :root {
+  --font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+
   --size-0: 4px;
   --size-1: 8px;
   --size-2: 16px;
@@ -110,9 +115,7 @@ html {
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: var(--font-family);
   font-size: 1rem;
   color-scheme: dark light;
   background-image: var(--background-image);
@@ -134,6 +137,10 @@ h1, h2, h3, h4, h5, h6, p {
   margin-block: 0;
 }
 
+// On Firefox, input have a different font
+input {
+  font-family: var(--font-family);
+}
 
 button {
   cursor: pointer;

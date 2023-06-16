@@ -1,4 +1,6 @@
 [role="searchbox"] {
+  height: 40px;
+  overflow: hidden;
   align-self: stretch;
   display: flex;
   align-items: center;
@@ -6,8 +8,26 @@
   border-radius: var(--size-3);
   // TODO: remove margin to avoid scrollbar
   margin: var(--size-2);
+  &:focus-within {
+    outline: solid 1px;
+  }
   .search {
+    font-size: 1rem;
     flex: 1;
     padding: var(--size-1) var(--size-2);
-  }  
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  // p should look like the placeholder of the input
+  a.search {
+    cursor: text; // give the illusion this is an input
+    text-decoration: none;
+    color: var(--secondary-text);
+  }
+  // If there is not icon on the left add some padding to avoid text shifting
+  // calc(icon size + gap + input padding left)
+  .search:first-child {
+    padding-left: calc(40px + 2 * var(--size-1));
+  }
 }

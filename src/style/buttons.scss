@@ -1,5 +1,6 @@
 .btn, .btn-fill, .btn-icon, .btn-outline {
-  &:disabled {
+  // Use :disabled for buttons & .disabled for anchors
+  &:disabled, &.disabled {
     --on-color: var(--disabled);
     cursor: default;
     pointer-events: none;
@@ -54,10 +55,16 @@
   border-radius: 20px;
   height: 40px;
   width: 40px;
+  display: grid;
+  place-items: center;
   &:hover {
     background-color: var(--surface);
   }
   &:active {
     background-color: var(--surface-higher);
+  }
+  svg {
+    height: 24px;
+    width: 24px;
   }
 }
