@@ -1,9 +1,11 @@
 import { component$, event$, Resource, useResource$, useStyles$ } from "@builder.io/qwik";
+import type { StaticGenerateHandler} from "@builder.io/qwik-city";
 import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
 import { BackIcon } from "~/components/icons/icons";
 import { PostForm } from "~/components/post-form";
 import { useToaster } from "~/components/toaster/toaster";
 import type { CreatePostInput} from "~/queries/posts";
+import { getPostPage} from "~/queries/posts";
 import { getPost } from "~/queries/posts";
 import { updatePost } from "~/queries/posts";
 import styles from './index.scss?inline';
@@ -31,3 +33,10 @@ export default component$(() => {
     </main>
   </>)} />
 })
+
+export const onStaticGenerate: StaticGenerateHandler = async () => {
+  const {data} = await getPostPage();
+  return {
+    params: data.map((post) => ({ id: post.id })),
+  };
+}

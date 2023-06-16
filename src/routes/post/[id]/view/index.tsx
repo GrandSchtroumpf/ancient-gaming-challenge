@@ -1,5 +1,5 @@
 import { component$, event$, Resource, useResource$, useStyles$ } from "@builder.io/qwik";
-import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
+import { Link, StaticGenerateHandler, useLocation, useNavigate } from "@builder.io/qwik-city";
 import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
@@ -7,6 +7,7 @@ import { disableForm, enableForm } from "~/components/form/utils";
 import { AddIcon } from "~/components/icons/icons";
 import { useToaster } from "~/components/toaster/toaster";
 import type { Comment, CreateCommentInput, Post} from "~/queries/posts";
+import { getPostPage} from "~/queries/posts";
 import { createComment, deletePost} from "~/queries/posts";
 import { getPost } from "~/queries/posts";
 import style from './index.scss?inline';
@@ -130,3 +131,11 @@ export default component$(() => {
     </main>
   </>
 })
+
+
+export const onStaticGenerate: StaticGenerateHandler = async () => {
+  const {data} = await getPostPage();
+  return {
+    params: data.map((post) => ({ id: post.id })),
+  };
+}
