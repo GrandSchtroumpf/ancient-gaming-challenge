@@ -36,7 +36,9 @@
     box-sizing: border-box;
   }
 
-  li:not(:last-child) {
-    border-bottom: 1px solid var(--divider);
+  hr {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px var(--divider);
   }
 }

@@ -10,13 +10,15 @@ interface CommentListProps {
 const CommentList = component$(({ comments }: CommentListProps) => {
   if (!comments.length) return <></>;
   return <ul class="comment-list" role="list">
-  {comments.map(comment => (
-  <li key={comment.id} id={comment.id}>
-    <h3>{comment.name}</h3>
-    <Link href={'mailto:'+comment.email}>{comment.email}</Link>
-    <p>{comment.body}</p>
-  </li>
-  ))}
+  {comments.map((comment, i) => <>
+    <li key={comment.id} id={comment.id}>
+      <h3>{comment.name}</h3>
+      <Link href={'mailto:'+comment.email}>{comment.email}</Link>
+      <p>{comment.body}</p>
+    </li>
+    {i !== comments.length - 1 && <hr/>}
+  </>
+  )}
   </ul>
 })
 
