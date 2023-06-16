@@ -1,5 +1,4 @@
 import { component$, useStyles$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
 import type { PostItem } from "~/queries/posts";
 import styles from './index.scss?inline';
 
@@ -13,10 +12,10 @@ export const PostList = component$(({ posts }: PostListProps) => {
   return <ul class="post-list" role="list">
     {posts.map(post => (
     <li key={post.id} id={post.id}>
-      <Link href={`/post/${post.id}/view`} class="surface">
+      <a href={`/post/${post.id}/view`} class="surface">
         <h3>{post.title}</h3>
         <p>By <span class="secondary">{post.user.username}</span></p>
-      </Link>
+      </a>
     </li>
     ))}
   </ul>

@@ -1,6 +1,6 @@
 import { component$, event$, Resource, useResource$, useStyles$ } from "@builder.io/qwik";
 import type { StaticGenerateHandler} from "@builder.io/qwik-city";
-import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
+import { useLocation, useNavigate } from "@builder.io/qwik-city";
 import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
@@ -25,7 +25,7 @@ const CommentList = component$(({ comments }: CommentListProps) => {
     {comments.map((comment, i) => <>
       <li key={comment.id} id={comment.id}>
         <h3>{comment.name}</h3>
-        <Link href={'mailto:'+comment.email}>{comment.email}</Link>
+        <a href={'mailto:'+comment.email}>{comment.email}</a>
         <p>{comment.body}</p>
       </li>
       {i !== comments.length - 1 && <hr/>}
@@ -100,7 +100,7 @@ const PostView = component$(({ post }: PostViewProps) => {
       <p>{post.body}</p>
       <footer>
         <button class="btn warn" onClick$={remove}>Delete</button>
-        <Link href="../update" class="btn-outline primary">Update</Link>
+        <a href="../update" class="btn-outline primary">Update</a>
       </footer>
     </article>
     <article class="comment surface">
@@ -117,15 +117,15 @@ export default component$(() => {
   const postResource = useResource$(() => getPost(params.id));
   return <>
     <nav role="searchbox">
-      <Link class="btn-icon" href="/">
+      <a class="btn-icon" href="/">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
           <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
         </svg>
-      </Link>
-      <Link href="/search" class="search">Search</Link>
-      <Link href="/post/create" class="btn-icon tooltip-left" aria-label="create a post">
+      </a>
+      <a href="/search" class="search">Search</a>
+      <a href="/post/create" class="btn-icon tooltip-left" aria-label="create a post">
         <AddIcon/>
-      </Link>
+      </a>
     </nav>
     <main class="post-page">
       <Resource value={postResource} onResolved={(post) => <PostView post={post}/>}/>

@@ -1,6 +1,5 @@
 import { component$, Resource, useContext, useResource$, useStyles$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { Link } from '@builder.io/qwik-city';
 import { HueContext } from '~/components/hue';
 import { AddIcon, Logo } from '~/components/icons/icons';
 import { Pagination } from '~/components/pagination';
@@ -18,10 +17,10 @@ export default component$(() => {
       <button class="btn-icon logo" onClick$={() => hueState.enabled = !hueState.enabled}>
         <Logo class={hueState.enabled ? 'enabled' : 'disabled'} />
       </button>
-      <Link href="/search" class="search">Search</Link>
-      <Link href="/post/create" class="btn-icon tooltip-left" aria-label="Create a post">
+      <a href="/search" class="search">Search</a>
+      <a href="/post/create" class="btn-icon tooltip-left" aria-label="Create a post">
         <AddIcon />
-      </Link>
+      </a>
     </nav>
     <main class="post-list-page">
       <article class="welcome theme">

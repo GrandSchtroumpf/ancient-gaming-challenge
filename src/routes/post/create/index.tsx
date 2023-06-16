@@ -1,6 +1,5 @@
 import { component$, event$, useStyles$ } from "@builder.io/qwik";
 import type { DocumentHead} from "@builder.io/qwik-city";
-import { Link } from "@builder.io/qwik-city";
 import { BackIcon } from "~/components/icons/icons";
 import { PostForm } from "~/components/post-form";
 import { useToaster } from "~/components/toaster/toaster";
@@ -17,9 +16,9 @@ export default component$(() => {
   });
   return <>
     <header class="view-header">
-      <Link href="/" class="btn-icon">
+      <a href="/" class="btn-icon">
         <BackIcon />
-      </Link>
+      </a>
       <h1>Create a new Post</h1>
     </header>
     <main class="create-post-page">

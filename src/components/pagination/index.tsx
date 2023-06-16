@@ -1,5 +1,5 @@
 import { component$, useStyles$ } from "@builder.io/qwik";
-import { Link, useLocation } from "@builder.io/qwik-city";
+import { useLocation } from "@builder.io/qwik-city";
 import type { Page, PageLimitPair, PageQueryOptions } from "~/queries/types";
 import styles from './index.scss?inline';
 
@@ -38,29 +38,29 @@ export const Pagination = component$(({ page, baseUrl }: PaginationProps) => {
     
     <div class="links">
       {/* First */}
-      <Link href={getUrl(first)} class={prevClass} aria-label="First Page">
+      <a href={getUrl(first)} class={prevClass} aria-label="First Page">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
           <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"></path>
         </svg>
-      </Link>
+      </a>
       {/* Previous */}
-      <Link href={getUrl(prev)} class={prevClass} aria-label="Previous Page">
+      <a href={getUrl(prev)} class={prevClass} aria-label="Previous Page">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
         </svg>
-      </Link>
+      </a>
       {/* Next */}
-      <Link href={getUrl(next)} class={nextClass} aria-label="Next Page">
+      <a href={getUrl(next)} class={nextClass} aria-label="Next Page">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
         </svg>
-      </Link>
+      </a>
       {/* Last */}
-      <Link href={getUrl(last)} class={nextClass} aria-label="Last Page">
+      <a href={getUrl(last)} class={nextClass} aria-label="Last Page">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
           <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z" />
         </svg>
-      </Link>
+      </a>
     </div>
   </nav>
 })
