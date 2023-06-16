@@ -103,7 +103,7 @@ const PostView = component$(({ post }: PostViewProps) => {
         <Link href="../update" class="btn-outline primary">Update</Link>
       </footer>
     </article>
-    <article class="surface" id="comments">
+    <article class="comment surface">
       <h2>Add a comment</h2>
       <CommentForm/>
       <CommentList comments={post.comments.data}/>
