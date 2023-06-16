@@ -2,7 +2,7 @@ import { component$, Resource, useResource$, useStyles$ } from '@builder.io/qwik
 import type { DocumentHead} from '@builder.io/qwik-city';
 import { Link } from '@builder.io/qwik-city';
 import { Pagination } from '~/components/paginator';
-import type { Post} from '~/queries/posts';
+import type { PostItem} from '~/queries/posts';
 import { getPostPage, PostsPage } from '~/queries/posts';
 import styles from './index.scss?inline';
 
@@ -21,14 +21,14 @@ const PostsPage = component$(({ page }: PostsPageProps) => {
 
 
 interface PostListProps {
-  posts: Post[];
+  posts: PostItem[];
 }
 const PostList = component$(({ posts }: PostListProps) => {
   if (!posts.length) return <p>There is no post matching your request 😥.</p>
   // Force role for Safari
   return <ul class="post-list" role="list">
     {posts.map(post => (
-    <li key={post.id}>
+    <li key={post.id} id={post.id}>
       <Link href={'post/' + post.id} class="surface">
         <h3>{post.title}</h3>
         <p class="secondary">{post.user.username}</p>
@@ -43,12 +43,12 @@ const PostList = component$(({ posts }: PostListProps) => {
 
 export default component$(() => {
   useStyles$(styles);
-  const postsResource = useResource$(() => getPostPage({ paginate: { limit: 5  }}));
+  const postsResource = useResource$(() => getPostPage({ paginate: { limit: 20 }}));
   return <>
     <header role="searchbox">
       <Link class="search">Search</Link>
     </header>
-    <main class="page">
+    <main class="post-list-page">
       <Resource value={postsResource}
         onRejected={(err) => <p class="warn">{err}</p>}
         onResolved={(page) => <PostsPage page={page} />} />

@@ -9,7 +9,7 @@ export const Pagination = component$(({ page }: PaginationProps) => {
   useStyles$(styles);
   const size = page.data?.length ?? 0;
   const { totalCount } = page.meta;
-  const { prev, next, first, last } = page.links;
+  const { prev, next } = page.links;
 
   return <nav aria-label="pagination" class="pagination">
     <p>{size} / {totalCount}</p>
@@ -17,7 +17,7 @@ export const Pagination = component$(({ page }: PaginationProps) => {
     <div class="links">
       <button class="btn-icon first tooltip" disabled={!prev?.page} aria-label="First Page">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
-        <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"></path>
+          <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"></path>
         </svg>
       </button>
       <button class="btn-icon previous tooltip" disabled={!prev?.page} aria-label="Previous Page">

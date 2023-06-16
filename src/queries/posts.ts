@@ -1,21 +1,21 @@
-import type { Page, PageMetadata, PageQueryOptions, PaginationLinks } from "./types";
+import type { Page, PageQueryOptions } from "./types";
 import type { User } from "./user";
 import { get } from "./utils";
 
-export type PostsPage = Page<Post>;
+export type PostsPage = Page<PostItem>;
 
-export interface Post {
+export interface PostItem {
   id: string;
   title: string;
   body: string;
   user: User;
 }
 
-export interface CommentsPage {
-  data: Comment[];
-  links: PaginationLinks;
-  meta: PageMetadata;
+export interface Post extends PostItem {
+  comments: CommentsPage;
 }
+
+export type CommentsPage = Page<Comment>;
 
 export interface Comment {
   id: string;
@@ -63,7 +63,7 @@ export async function getPostPage(options?: PageQueryOptions) {
 
 export async function getPost(id: string) {
   const query = `
-  query Post($id: ID) {
+  query Post($id: ID!) {
     post(id: $id) {
       id
       title
@@ -75,6 +75,17 @@ export async function getPost(id: string) {
         website
         company {
           name
+        }
+      }
+      comments {
+        meta {
+          totalCount
+        }
+        data {
+          id
+          name
+          email
+          body
         }
       }
     }

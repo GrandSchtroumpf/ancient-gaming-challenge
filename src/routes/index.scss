@@ -1,6 +1,6 @@
 @use '../style/search';
 
-.page {
+.post-list-page {
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
@@ -15,11 +15,13 @@
   display: grid;
   gap: var(--size-2);
   grid-template-columns: repeat(auto-fill, minmax(var(--post-size), 1fr));
-
+  
   li {
     display: contents;
   }
   a {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,6 +33,12 @@
     }
     &:active {
       background-color: var(--surface-higher);
+    }
+    h3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
     }
     p {
       color: var(--on-color, var(--text));
