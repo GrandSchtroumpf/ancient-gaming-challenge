@@ -37,6 +37,7 @@ export const Pagination = component$(({ page, baseUrl }: PaginationProps) => {
   return <nav aria-label="pagination" class="pagination">
     <p>{(currentPage - 1) * size} - {currentPage * size} / {totalCount}</p>
     
+    {/* Use Link instead of anchor because of SSG issues */}
     <div class="links">
       {/* First */}
       <Link href={getUrl(first)} class={prevClass} aria-label="First Page">

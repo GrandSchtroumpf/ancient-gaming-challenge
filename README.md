@@ -4,7 +4,7 @@ Demo: https://ancient-gaming-challenge.vercel.app
 
 Note: I decided to play with the new color features in CSS. Some browser might not support it (Firefox mobile for example). I would recommand to use a Chromium based browser (Chrome, Edge, Brave, ...).
 
-For some reason using Link navigation is quite slow (~1s), I investigated but couldn't find why. So I decided to use regular <a>
+For some reason using Link navigation is quite slow (~1s), I investigated but couldn't find why. So I decided to use regular <a>, except for pagination, because SSG was reusing initial fetch instead of using updated searchParams.
 
 ## Getting Started
 ```
