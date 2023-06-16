@@ -1,0 +1,40 @@
+@use '../style/search';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  padding: var(--size-2);
+}
+
+.post-list {
+  --post-size: 300px;
+  list-style: none;
+  margin-block: 0;
+  padding-left: 0;
+  display: grid;
+  gap: var(--size-2);
+  grid-template-columns: repeat(auto-fill, minmax(var(--post-size), 1fr));
+
+  li {
+    display: contents;
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    gap: var(--size-1);
+    &:hover {
+      background-color: var(--surface-high);
+    }
+    &:active {
+      background-color: var(--surface-higher);
+    }
+    p {
+      color: var(--on-color, var(--text));
+    }
+  }
+}
+

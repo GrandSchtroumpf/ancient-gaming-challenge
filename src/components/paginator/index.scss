@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--size-2);
+  background-color: var(--surface-low);
+  border-radius: var(--size-0);
+  padding: var(--size-1) var(--size-2);
+  box-sizing: border-box;
+
+  .links {
+    --on-color: var(--secondary-text);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--size-1);
+  }
+}

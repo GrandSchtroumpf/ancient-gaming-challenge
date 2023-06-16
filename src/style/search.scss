@@ -1,0 +1,12 @@
+[role="searchbox"] {
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-lower);
+  border-radius: var(--size-3);
+  // TODO: remove margin to avoid scrollbar
+  margin: var(--size-2);
+  .search {
+    flex: 1;
+    padding: var(--size-1) var(--size-2);
+  }  
+}
