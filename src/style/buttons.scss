@@ -25,6 +25,7 @@
   color: var(--on-color);
   padding: 8px 16px;
   border-radius: 20px;
+  border: none;
   &:hover {
     background-color: color-mix(in oklch, var(--on-color) var(--alpha-hover), var(--color));
   }

@@ -1,4 +1,4 @@
-export async function get<T>(query: string, variables: any) {
+export async function graphql<T>(query: string, variables: any) {
   const res = await fetch("https://graphqlzero.almansi.me/api", {
     method: "POST",
     headers: { "content-type": "application/json" },

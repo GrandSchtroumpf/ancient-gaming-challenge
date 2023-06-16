@@ -1,7 +1,7 @@
 import type { QwikSubmitEvent} from "@builder.io/qwik";
 import { component$, event$, useSignal, useStyles$, useTask$ } from "@builder.io/qwik";
 import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
-import { BackIcons, SearchIcons } from "~/components/icons/icons";
+import { BackIcon, SearchIcon } from "~/components/icons/icons";
 import { getSearchParams, Pagination } from "~/components/pagination";
 import { PostList } from "~/components/post-list";
 import type { PostsPage } from "~/queries/posts";
@@ -30,11 +30,11 @@ export default component$(() => {
   return <>
     <form role="searchbox" preventdefault:submit onSubmit$={search}>
       <Link href="/" class="btn-icon">
-        <BackIcons/>
+        <BackIcon/>
       </Link>
       <input autoFocus class="search" type="search" name="q" aria-label="Search" placeholder="Search"/>
       <button type="submit" class="btn-icon">
-        <SearchIcons/>
+        <SearchIcon/>
       </button>
     </form>
     <main class="search-page">

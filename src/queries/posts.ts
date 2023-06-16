@@ -1,6 +1,6 @@
 import type { Page, PageQueryOptions } from "./types";
 import type { User } from "./user";
-import { get } from "./utils";
+import { graphql } from "./utils";
 
 export type PostsPage = Page<PostItem>;
 
@@ -13,6 +13,11 @@ export interface PostItem {
 
 export interface Post extends PostItem {
   comments: CommentsPage;
+}
+
+export interface CreatePostInput {
+  title: string;
+  body: string;
 }
 
 export type CommentsPage = Page<Comment>;
@@ -53,7 +58,7 @@ export async function getPostPage(options?: PageQueryOptions) {
     limit
   }
   `;
-  const { posts } = await get<{ posts: PostsPage }>(query, { options });
+  const { posts } = await graphql<{ posts: PostsPage }>(query, { options });
   return posts;
 }
 
@@ -87,6 +92,20 @@ export async function getPost(id: string) {
       }
     }
   }`;
-  const { post } = await get<{ post: Post }>(query, { id });
+  const { post } = await graphql<{ post: Post }>(query, { id });
   return post;
+}
+
+
+export async function createPost(input: CreatePostInput) {
+  const mutation = `
+  mutation ($input: CreatePostInput!) {
+    createPost(input: $input) {
+      id
+      title
+      body
+    }
+  }`;
+  const { createPost } = await graphql<{createPost: Omit<PostItem, 'user'>}>(mutation, { input });
+  return createPost;
 }
