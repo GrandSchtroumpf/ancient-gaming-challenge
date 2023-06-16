@@ -13,6 +13,7 @@
   a {
     content-visibility: auto;
     contain-intrinsic-size: auto 300px;
+    animation: fade 0.3s var(--ease-out);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
