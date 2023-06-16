@@ -100,7 +100,7 @@ const PostView = component$(({ post }: PostViewProps) => {
       <p>{post.body}</p>
       <footer>
         <button class="btn warn" onClick$={remove}>Delete</button>
-        <a href="../update" class="btn-outline primary">Update</a>
+        <a href={`/post/${post.id}/update`} class="btn-outline primary">Update</a>
       </footer>
     </article>
     <article class="comment surface">

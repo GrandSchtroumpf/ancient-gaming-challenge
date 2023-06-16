@@ -23,7 +23,7 @@ export default component$(() => {
   });
   return <Resource value={postResource} onResolved={(post => <>
     <header class="view-header">
-      <a href="../view" class="btn-icon">
+      <a href={`/post/${post.id}/view`} class="btn-icon">
         <BackIcon />
       </a>
       <h1>{post.title}</h1>
