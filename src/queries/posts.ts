@@ -29,6 +29,12 @@ export interface Comment {
   body: string
 }
 
+export interface CreateCommentInput {
+  name: string;
+  email: string;
+  body: string;
+}
+
 export async function getPostPage(options?: PageQueryOptions) {
   const query = `
   query PagePosts($options: PageQueryOptions) {
@@ -108,4 +114,28 @@ export async function createPost(input: CreatePostInput) {
   }`;
   const { createPost } = await graphql<{createPost: Omit<PostItem, 'user'>}>(mutation, { input });
   return createPost;
+}
+export async function deletePost(id: string) {
+  const mutation = `
+  mutation ($id: ID!) {
+    deletePost(id: $id)
+  }`;
+  const { deletePost } = await graphql<{deletePost: boolean}>(mutation, { id });
+  return deletePost;
+}
+
+export async function createComment(input: CreateCommentInput) {
+  const mutation = `
+  mutation (
+    $input: CreateCommentInput!
+  ) {
+    createComment(input: $input) {
+      id
+      name
+      email
+      body
+    }
+  }`;
+  const { createComment } = await graphql<{createComment: Comment}>(mutation, { input });
+  return createComment;
 }

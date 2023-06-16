@@ -1,5 +1,5 @@
 import { component$, event$, useStyles$ } from "@builder.io/qwik";
-import { Link, useNavigate } from "@builder.io/qwik-city";
+import { Link } from "@builder.io/qwik-city";
 import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
@@ -10,14 +10,13 @@ import styles from './index.scss?inline';
 
 export default component$(() => {
   useStyles$(styles);
-  const nav = useNavigate();
   const create = event$(async (_: any, form: HTMLFormElement) => {
     const data = new FormData(form);
     // Force cast type because fromEntries is wrongly strongly typed
     const post = Object.fromEntries(data.entries()) as any as CreatePostInput;
     try {
-      const { id } = await createPost(post);
-      nav(`post/${id}`);
+      await createPost(post);
+      form.reset();
     } catch(err) {
       console.error(err);
     }

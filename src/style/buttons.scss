@@ -35,10 +35,10 @@
 }
 
 .btn-outline {
-  --color: var(--outline);
   transition: background-color 0.1s ease-in-out;
   background-color: var(--surface-lower);
-  border: 1px solid var(--color);
+  border: 1px solid var(--color, var(--outline));
+  color: var(--color, var(--text));
   padding: 8px 16px;
   border-radius: 40px;
   &:hover {
