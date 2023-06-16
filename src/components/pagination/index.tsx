@@ -20,14 +20,15 @@ export const Pagination = component$(({ page, baseUrl }: PaginationProps) => {
   const size = page.data.length;
   const { totalCount } = page.meta;
 
+  
   // If totalCount is 0, links will be null, so we want to return before using
   if (!totalCount || !page.links) return <></>;
-
+  
   const { first, prev, next, last } = page.links;
   const prevClass = ['btn-icon', 'tooltip-top', prev?.page ? '': 'disabled'];
   const nextClass = ['btn-icon', 'tooltip-top', next?.page ? '': 'disabled'];
   const currentPage = next?.page ? next?.page - 1 : last.page;
-
+  
   const getUrl = (paginate: PageLimitPair | null) => {
     if (!paginate) return;
     return `${baseUrl}/${getSearchParams(url, {paginate})}`;
