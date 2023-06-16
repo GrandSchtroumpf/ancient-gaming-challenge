@@ -115,6 +115,18 @@ export async function createPost(input: CreatePostInput) {
   const { createPost } = await graphql<{createPost: Omit<PostItem, 'user'>}>(mutation, { input });
   return createPost;
 }
+export async function updatePost(id: string, input: CreatePostInput) {
+  const mutation = `
+  mutation ($id: ID!, $input: UpdatePostInput!) {
+    updatePost(id: $id, input: $input) {
+      id
+      title
+      body
+    }
+  }`;
+  const { updatePost } = await graphql<{updatePost: Omit<PostItem, 'user'>}>(mutation, { id, input });
+  return updatePost;
+}
 export async function deletePost(id: string) {
   const mutation = `
   mutation ($id: ID!) {

@@ -59,7 +59,7 @@ export const useToaster = () => {
   return {
     add: $((content: ToastProps['content'], params: ToastParams = {}) => {
       params.id ||= crypto.randomUUID();
-      params.duration ||= 1500;
+      params.duration ||= 2000;
       params.position ||= 'center';
       params.role ||= 'status';
       flip(toaster.value);

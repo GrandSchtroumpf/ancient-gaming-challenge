@@ -97,7 +97,8 @@ const PostView = component$(({ post }: PostViewProps) => {
       <a href={'mailto:' + post.user.email}>{post.user.username} ({post.user.email})</a>
       <p>{post.body}</p>
       <footer>
-        <button class="btn-outline warn" onClick$={remove}>Delete</button>
+        <button class="btn warn" onClick$={remove}>Delete</button>
+        <Link href="../update" class="btn-outline primary">Update</Link>
       </footer>
     </article>
     <article class="surface" id="comments">

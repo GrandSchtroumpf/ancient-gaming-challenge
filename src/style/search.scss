@@ -8,7 +8,7 @@
   // TODO: remove margin to avoid scrollbar
   margin: var(--size-2);
   &:focus-within {
-    outline: solid 1px;
+    outline: solid 1px var(--primary);
   }
   .search {
     font-size: 1rem;

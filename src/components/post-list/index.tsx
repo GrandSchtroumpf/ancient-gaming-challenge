@@ -13,7 +13,7 @@ export const PostList = component$(({ posts }: PostListProps) => {
   return <ul class="post-list" role="list">
     {posts.map(post => (
     <li key={post.id} id={post.id}>
-      <Link href={'/post/' + post.id} class="surface">
+      <Link href={`/post/${post.id}/view`} class="surface">
         <h3>{post.title}</h3>
         <p>By <span class="secondary">{post.user.username}</span></p>
       </Link>

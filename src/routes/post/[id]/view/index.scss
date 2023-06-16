@@ -1,4 +1,4 @@
-@use '../../../style/search';
+@use '../../../../style/search';
 
 .post-page {
   display: flex;
@@ -20,7 +20,7 @@ article {
   gap: var(--size-2);
   footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 }
 
