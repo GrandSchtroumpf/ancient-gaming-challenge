@@ -14,7 +14,7 @@ export default component$(() => {
   useVisibleTask$(() => {
     const hue = JSON.parse(sessionStorage.getItem('hue') || '{}');
     hueState.value = hue.value ? Number(hue.value) : 250;
-    hueState.enabled = !!hue.enabled;
+    hueState.enabled = typeof hue.enabled !== 'boolean' ? true : hue.enabled;
   })
 
   // Just for fun: Change global color every second
