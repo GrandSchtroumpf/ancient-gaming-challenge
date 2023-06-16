@@ -12,28 +12,29 @@ export default component$(() => {
   const hueState = useHueProvider();
 
   useVisibleTask$(() => {
-    const hue = sessionStorage.getItem('hue') ?? '250';
-    hueState.value = Number(hue);
+    const hue = JSON.parse(sessionStorage.getItem('hue') || '{}');
+    hueState.value = hue.value ? Number(hue.value) : 250;
+    hueState.enabled = !!hue.enabled;
   })
 
   // Just for fun: Change global color every second
   useVisibleTask$(({ track }) => {
     track(() => hueState.enabled);
+    sessionStorage.setItem('hue', JSON.stringify(hueState));
     if (!hueState.enabled) return;
     const setHue = () => {
       const nextHue = (hueState.value + 1) % 360;
       document.documentElement.style.setProperty('--hue', `${nextHue}`);
       hueState.value = nextHue;
-      sessionStorage.setItem('hue', `${nextHue}`);
+      sessionStorage.setItem('hue', JSON.stringify(hueState));
     }
-    setHue();
     const interval = setInterval(() => setHue, 1000);
     return () => clearInterval(interval);
   });
 
   const setHueScript = `
-    const hue = sessionStorage.getItem('hue') ?? '250';
-    document.documentElement.style.setProperty('--hue', hue);
+    const hue = JSON.parse(sessionStorage.getItem('hue') || '{}');
+    document.documentElement.style.setProperty('--hue', hue.value || '250');
   `;
 
   return (

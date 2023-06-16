@@ -15,8 +15,8 @@ Visit: http://localhost:5173/
 
 Note: In devmode Qwik doesn't use caching, so each operation takes time.
 
-## Static Site Generator (Node.js)
+## Build with SSG
 
 ```
-npm run build.server
+npm run build
 ```
