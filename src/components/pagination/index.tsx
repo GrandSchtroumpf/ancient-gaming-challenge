@@ -24,8 +24,8 @@ export const Pagination = component$(({ page, baseUrl }: PaginationProps) => {
   if (!totalCount) return <></>;
 
   const { first, prev, next, last } = page.links;
-  const prevClass = ['btn-icon', 'tooltip', prev?.page ? '': 'disabled'];
-  const nextClass = ['btn-icon', 'tooltip', next?.page ? '': 'disabled'];
+  const prevClass = ['btn-icon', 'tooltip-top', prev?.page ? '': 'disabled'];
+  const nextClass = ['btn-icon', 'tooltip-top', next?.page ? '': 'disabled'];
   const currentPage = next?.page ? next?.page - 1 : last.page;
 
   const getUrl = (paginate: PageLimitPair | null) => {

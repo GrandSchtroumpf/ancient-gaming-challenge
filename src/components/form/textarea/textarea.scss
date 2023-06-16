@@ -1,0 +1,12 @@
+textarea.field {
+  vertical-align: middle;
+  resize: vertical;
+  &::placeholder {
+    color: var(--secondary-text);
+    opacity: 0.5;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+}
+

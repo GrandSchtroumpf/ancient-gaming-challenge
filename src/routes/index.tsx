@@ -13,7 +13,7 @@ export default component$(() => {
   return <>
     <nav role="searchbox">
       <Link href="/search" class="search">Search</Link>
-      <Link href="/post/create" class="btn-icon tooltip" aria-label="Create a post">
+      <Link href="/post/create" class="btn-icon tooltip-left" aria-label="Create a post">
         <AddIcon />
       </Link>
     </nav>

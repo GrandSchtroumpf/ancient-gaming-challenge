@@ -28,7 +28,6 @@ interface PostViewProps {
   post: Post;
 }
 const PostView = component$(({ post }: PostViewProps) => {
-  console.log(post);
   if (!post) return <p>We couldn't find a post for this identifier, sorry 😥</p>
   return <>
     <article class="post surface" id={post.id}>
@@ -57,7 +56,7 @@ export default component$(() => {
         </svg>
       </Link>
       <Link href="/search" class="search">Search</Link>
-      <Link href="/post/create" class="btn-icon tooltip" aria-label="create a post">
+      <Link href="/post/create" class="btn-icon tooltip-left" aria-label="create a post">
         <AddIcon/>
       </Link>
     </nav>

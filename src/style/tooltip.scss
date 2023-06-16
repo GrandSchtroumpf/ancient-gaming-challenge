@@ -1,12 +1,13 @@
-.tooltip {
+[class*="tooltip"] {
   position: relative;
   &::after {
     content: attr(aria-label);
     pointer-events: none;
     padding: var(--size-0) var(--size-1);
     position: absolute;
-    top: 100%;
-    left: -50%;
+    height: fit-content;
+    width: fit-content;
+
     background-color: var(--overlay);
     border-radius: var(--size-0);
     color: var(--secondary-text);
@@ -22,4 +23,20 @@
     transition: opacity 0.2s var(--ease-out),
       transform 0.2s var(--ease-out);
   }
+}
+.tooltip-top::after {
+  bottom: 110%;
+  left: -50%;
+}
+.tooltip-right::after {
+  top: 25%;
+  left: 110%;
+}
+.tooltip-bottom::after {
+  top: 110%;
+  left: -50%;
+}
+.tooltip-left::after {
+  top: 25%;
+  right: 110%;
 }
