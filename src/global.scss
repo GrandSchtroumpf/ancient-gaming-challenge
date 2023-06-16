@@ -1,23 +1,105 @@
-/**
- * WHAT IS THIS FILE?
- *
- * Globally applied styles. No matter which components are in the page or matching route,
- * the styles in here will be applied to the Document, without any sort of CSS scoping.
- *
- */
-
+/*****************/
+/* CSS Variables */
+/*****************/
 :root {
-  --qwik-dark-blue: #006ce9;
-  --qwik-light-blue: #18b6f6;
-  --qwik-light-purple: #ac7ff4;
-  --qwik-dark-purple: #713fc2;
-  --qwik-dirty-black: #1d2033;
-  --qwik-dark-background: #151934;
-  --qwik-dark-text: #ffffff;
+  --size-0: 4px;
+  --size-1: 8px;
+  --size-2: 16px;
+  --size-3: 24px;
+  --size-4: 32px;
+  --alpha-hover: 8%;
+  --alpha-focus: 12%;
+  --alpha-drag: 24%;
+  
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
+  --ease-in-out: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-back-in-out: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  @media (prefers-reduced-motion: reduce) {
+    --ease-in: ease-in;
+    --ease-out: ease-out;
+    --ease-in-out: ease-in-out;
+    --ease-back-in-out: ease-in-out;
+  }
 }
 
+
+:root, ::backdrop {
+  --hue: 250;
+  --chroma: 0.01;
+  @media (prefers-color-scheme: dark) {
+    --chroma: 0.02;
+  }
+}
+
+
+.theme, :root, ::backdrop {
+  --primary-hue: var(--hue);
+  --text: oklch(10% var(--chroma) var(--hue));
+  --background: oklch(90% var(--chroma) var(--hue));
+  --background-blur: none;
+  
+  --primary: oklch(65% 0.3 var(--primary-hue));
+  --on-primary: oklch(100% 0.05 var(--primary-hue));
+
+  --secondary: oklch(40% 0.3 calc(var(--hue) + 180)); // oklch(80% 0.15 var(--hue));
+  --on-secondary: oklch(10% 0.15 var(--hue));
+
+
+  --overlay: oklch(98% var(--chroma) var(--hue));
+  --overlay-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
+  --base-surface: 100% var(--chroma) var(--hue);
+  --surface-higher: oklch(var(--base-surface) / 1);
+  --surface-high: oklch(var(--base-surface) / 0.75);
+  --surface: oklch(var(--base-surface) / 0.56);
+  --surface-low: oklch(var(--base-surface) / 0.16);
+  --surface-lower: oklch(var(--base-surface) / 0.08);
+
+  --outline: oklch(50% var(--chroma) var(--hue));
+  --divider: oklch(30% var(--chroma) var(--hue));
+  
+  --background-image: linear-gradient(
+    160deg,
+    oklch(95% 0.02 var(--hue)),
+    oklch(93% 0 var(--hue))
+  );
+  
+  @media (prefers-color-scheme: dark) {
+    --chroma: 0.02;
+    --text: oklch(100% var(--chroma) var(--hue));
+    --background: oklch(20% var(--chroma) var(--hue));
+    --primary: oklch(80% 0.2 var(--primary-hue));
+    --on-primary: oklch(20% 0.15 var(--primary-hue));
+    
+    --secondary: oklch(30% 0.15 var(--hue));
+    --on-secondary: oklch(100% 0.15 var(--hue));
+    
+    --divider: oklch(70% var(--chroma) var(--hue));
+    
+    
+    --overlay: oklch(35% var(--chroma) var(--hue));
+    
+    --base-surface: 90% var(--chroma) var(--hue);
+    --surface-higher: oklch(var(--base-surface) / 0.32);
+    --surface-high: oklch(var(--base-surface) / 0.24);
+    --surface: oklch(var(--base-surface) / 0.16);
+    --surface-low: oklch(var(--base-surface) / 0.12);
+    --surface-lower: oklch(var(--base-surface) / 0.08);
+    --background-image: linear-gradient(
+        160deg,
+        oklch(30% var(--chroma) var(--hue)),
+        oklch(15% var(--chroma) var(--hue))
+      );
+    
+  }
+}
+
+/**************/
+/* Base Style */
+/**************/
+
 html {
-  line-height: 1;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -25,14 +107,110 @@ html {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 1rem;
+  color-scheme: dark light;
+  background-image: var(--background-image);
+  color: var(--text);
+  accent-color: var(--primary);
 }
 
 body {
-  padding: 0;
   margin: 0;
+  padding: 0;
   line-height: inherit;
+  min-height: 100dvh;
 }
 
-h1, h2, h3, h4, h5, p {
-  margin: 0;
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-block: 0;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+a[class*="btn"] {
+  text-decoration: none;
+}
+
+
+/****************/
+/* Colors Utils */
+/****************/
+.primary {
+  --color: var(--primary);
+  --on-color: var(--on-primary);
+}
+.secondary {
+  --color: var(--secondary);
+  --on-color: var(--on-secondary);
+}
+
+
+/***********/
+/* Buttons */
+/***********/
+.btn {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  &:hover {
+    background-color: var(--surface);
+  }
+  &:active {
+    background-color: var(--surface-high);
+  }
+}
+
+.btn-fill {
+  --color: var(--primary);
+  --on-color: var(--on-primary);
+  background-color: var(--color);
+  color: var(--on-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  &:hover {
+    background-color: color-mix(in oklch, var(--on-color) var(--alpha-hover), var(--color));
+  }
+  &:active {
+    background-color: color-mix(in oklch, var(--on-color) var(--alpha-focus), var(--color));
+  }
+}
+
+.btn-outline {
+  --color: var(--outline);
+  transition: background-color 0.1s ease-in-out;
+  background-color: var(--surface-lower);
+  border: 1px solid var(--color);
+  padding: 8px 16px;
+  border-radius: 40px;
+  &:hover {
+    background-color: var(--surface);
+  }
+  &:active {
+    background-color: var(--surface-higher);
+  }
+}
+
+.btn-icon {
+  --on-color: var(--text);
+  color: var(--on-color);
+  background-color: transparent;
+  border-radius: 20px;
+  height: 40px;
+  width: 40px;
+  &:hover {
+    background-color: var(--surface);
+  }
+  &:active {
+    background-color: var(--surface-higher);
+  }
+}
+
+
+.surface {
+
 }
