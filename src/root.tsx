@@ -20,14 +20,21 @@ export default component$(() => {
   useVisibleTask$(({ track }) => {
     track(() => hueState.enabled);
     if (!hueState.enabled) return;
-    const interval = setInterval(() => {
+    const setHue = () => {
       const nextHue = (hueState.value + 1) % 360;
       document.documentElement.style.setProperty('--hue', `${nextHue}`);
       hueState.value = nextHue;
       sessionStorage.setItem('hue', `${nextHue}`);
-    }, 1000);
+    }
+    setHue();
+    const interval = setInterval(() => setHue, 1000);
     return () => clearInterval(interval);
   });
+
+  const setHueScript = `
+    const hue = sessionStorage.getItem('hue') ?? '250';
+    document.documentElement.style.setProperty('--hue', hue);
+  `;
 
   return (
     <QwikCityProvider>
@@ -36,10 +43,7 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
         {/* Avoid flash */}
-        <script>
-          const hue = sessionStorage.getItem('hue') ?? '250';
-          document.documentElement.style.setProperty('--hue', hue);
-        </script>
+        <script dangerouslySetInnerHTML={setHueScript}></script>
       </head>
       <body lang="en">
         <RouterOutlet />

@@ -3,8 +3,13 @@
 .logo {
   svg {
     transition: transform 0.5s var(--ease-back-in-out);
+    circle {
+      transition: fill 0.5s var(--ease-out);
+    }
   }
   svg.disabled {
+    --primary: var(--surface);
+    --on-primary: var(--text);
     transform: rotate(180deg);
   }
 }
