@@ -22,13 +22,12 @@ export default component$(() => {
     track(() => hueState.enabled);
     sessionStorage.setItem('hue', JSON.stringify(hueState));
     if (!hueState.enabled) return;
-    const setHue = () => {
+    const interval = setInterval(() => {
       const nextHue = (hueState.value + 1) % 360;
       document.documentElement.style.setProperty('--hue', `${nextHue}`);
       hueState.value = nextHue;
       sessionStorage.setItem('hue', JSON.stringify(hueState));
-    }
-    const interval = setInterval(() => setHue, 1000);
+    }, 1000);
     return () => clearInterval(interval);
   });
 
