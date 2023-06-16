@@ -79,3 +79,11 @@ article {
     border-bottom: solid 1px var(--divider);
   }
 }
+
+
+@media (max-width: 900px) {
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -4,6 +4,12 @@
   gap: var(--size-1);
   padding: var(--size-1) var(--size-2);
   background-color: var(--surface-low);
+
+  h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 .create-post-page {
   flex: 1;

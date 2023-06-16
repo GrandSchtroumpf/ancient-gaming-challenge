@@ -8,6 +8,7 @@ import { PostList } from '~/components/post-list';
 import { getPostPage } from '~/queries/posts';
 import styles from './index.scss?inline';
 
+
 export default component$(() => {
   useStyles$(styles);
   const hueState = useContext(HueContext);
@@ -31,7 +32,7 @@ export default component$(() => {
           This is a new CSS feature, and some browser (Firefox mobile for example) do not support it...
         </p>
         <p>
-          The background will change over time. To disable to feature you can click on the logo above: 
+          The background will change over time. To disable this feature you can click on the logo above: 
         </p>
         <ul role="list">
           <li class="logo">
@@ -57,7 +58,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'List of posts',
+      content: 'On this challenge I created a CRUD app for posts (and played a little with CSS color spaces 😊)',
     },
   ],
 };

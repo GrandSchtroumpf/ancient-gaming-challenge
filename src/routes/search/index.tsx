@@ -1,6 +1,6 @@
 import type { QwikSubmitEvent} from "@builder.io/qwik";
 import { component$, event$, useSignal, useStyles$, useTask$ } from "@builder.io/qwik";
-import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
+import { DocumentHead, Link, useLocation, useNavigate } from "@builder.io/qwik-city";
 import { BackIcon, SearchIcon } from "~/components/icons/icons";
 import { getSearchParams, Pagination } from "~/components/pagination";
 import { PostList } from "~/components/post-list";
@@ -43,3 +43,14 @@ export default component$(() => {
     </main>
   </>
 });
+
+
+export const head: DocumentHead = {
+  title: 'Search a post',
+  meta: [
+    {
+      name: 'description',
+      content: 'Search for your favorite post',
+    },
+  ],
+};

@@ -1,4 +1,5 @@
 import { component$, event$, useStyles$ } from "@builder.io/qwik";
+import type { DocumentHead} from "@builder.io/qwik-city";
 import { Link } from "@builder.io/qwik-city";
 import { BackIcon } from "~/components/icons/icons";
 import { PostForm } from "~/components/post-form";
@@ -26,3 +27,13 @@ export default component$(() => {
     </main>
   </>
 })
+
+export const head: DocumentHead = {
+  title: 'Create a post',
+  meta: [
+    {
+      name: 'description',
+      content: 'On this page you can create a brand new post',
+    },
+  ],
+};
