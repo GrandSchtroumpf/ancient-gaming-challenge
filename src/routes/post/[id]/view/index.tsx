@@ -1,5 +1,6 @@
 import { component$, event$, Resource, useResource$, useStyles$ } from "@builder.io/qwik";
-import { Link, StaticGenerateHandler, useLocation, useNavigate } from "@builder.io/qwik-city";
+import type { StaticGenerateHandler} from "@builder.io/qwik-city";
+import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
 import { FormField, Label } from "~/components/form/form-field/form-field";
 import { Input } from "~/components/form/input/input";
 import { Textarea } from "~/components/form/textarea/textarea";
