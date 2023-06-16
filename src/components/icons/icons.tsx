@@ -1,3 +1,4 @@
+import type { QwikJSX } from "@builder.io/qwik";
 import { component$ } from "@builder.io/qwik";
 
 export const SearchIcon = component$(() => {
@@ -14,4 +15,13 @@ export const AddIcon = component$(() => {
   return <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" fill="currentColor">
     <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
   </svg>;
+})
+
+export const Logo = component$((props: QwikJSX.IntrinsicElements['svg']) => {
+  return <svg viewBox="0 0 24 24" width="24" height="24" {...props}>
+  <circle cx="12" cy="12" fill="none" stroke="var(--surface)" stroke-width="2" r="11" />
+  <circle cx="12" cy="12" fill="var(--primary)" r="7" />
+  <circle r="2" fill="var(--on-primary)" cx="9" cy="11" />
+  <circle r="2" fill="var(--on-primary)" cx="15" cy="11" />
+</svg>
 })

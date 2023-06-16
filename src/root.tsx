@@ -1,15 +1,20 @@
 import { component$, useVisibleTask$ } from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
+import { useHueProvider } from './components/hue';
 import { RouterHead } from './components/router-head/router-head';
 import { Toaster, useToasterProvider } from './components/toaster/toaster';
 
 import './global.scss';
 
+
 export default component$(() => {
   useToasterProvider();
+  const hueState = useHueProvider();
 
   // Just for fun: Change global color every second
-  useVisibleTask$(() => {
+  useVisibleTask$(({ track }) => {
+    track(() => hueState.enabled);
+    if (!hueState.enabled) return;
     const interval = setInterval(() => {
       const initial = '250';
       const hue = document.documentElement.style.getPropertyValue('--hue') || initial;

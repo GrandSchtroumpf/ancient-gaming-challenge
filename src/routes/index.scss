@@ -1,8 +1,10 @@
 @use '../style/search';
 
 .logo {
-  transition: transform 0.5s var(--ease-back-in-out);
-  &:hover {
+  svg {
+    transition: transform 0.5s var(--ease-back-in-out);
+  }
+  svg.disabled {
     transform: rotate(180deg);
   }
 }
@@ -14,4 +16,25 @@
   justify-content: space-between;
   gap: var(--size-2);
   padding: var(--size-2);
+}
+
+.welcome {
+  --hue: 200;
+  padding: var(--size-1) var(--size-2);
+  background-image: var(--background-image);
+  border-radius: var(--size-0);
+  border: solid 1px var(--primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-block: 0;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    padding: var(--size-0) var(--size-1);
+  }
 }

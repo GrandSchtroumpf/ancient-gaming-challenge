@@ -1,7 +1,8 @@
-import { component$, Resource, useResource$, useStyles$ } from '@builder.io/qwik';
+import { component$, Resource, useContext, useResource$, useStyles$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { Link } from '@builder.io/qwik-city';
-import { AddIcon } from '~/components/icons/icons';
+import { HueContext } from '~/components/hue';
+import { AddIcon, Logo } from '~/components/icons/icons';
 import { Pagination } from '~/components/pagination';
 import { PostList } from '~/components/post-list';
 import { getPostPage } from '~/queries/posts';
@@ -9,21 +10,38 @@ import styles from './index.scss?inline';
 
 export default component$(() => {
   useStyles$(styles);
-  const postsResource = useResource$(() => getPostPage({ paginate: { limit: 20 } }));
+  const hueState = useContext(HueContext);
+  const postsResource = useResource$(() => getPostPage({ paginate: { limit: 10 } }));
   return <>
     <nav role="searchbox">
-      <svg class="logo" viewBox="0 0 24 24" width="24" height="24" style="margin: 8px">
-        <circle cx="12" cy="12" fill="none" stroke="var(--surface)" stroke-width="2" r="11" />
-        <circle cx="12" cy="12" fill="var(--primary)" r="7" />
-        <circle r="2" fill="var(--on-primary)" cx="9" cy="11" />
-        <circle r="2" fill="var(--on-primary)" cx="15" cy="11" />
-      </svg>
+      <button class="btn-icon logo" onClick$={() => hueState.enabled = !hueState.enabled}>
+        <Logo class={hueState.enabled ? 'enabled' : 'disabled'} />
+      </button>
       <Link href="/search" class="search">Search</Link>
       <Link href="/post/create" class="btn-icon tooltip-left" aria-label="Create a post">
         <AddIcon />
       </Link>
     </nav>
     <main class="post-list-page">
+      <article class="welcome theme">
+        <h1>Ancient Gaming Challenge</h1>
+        <p>
+          Welcome on my challenge. I hope you'll appreciate the experience<br/>
+          I use this opportunity to play a little with CSS color spaces.<br/>
+          This is a new CSS feature, and some browser (Firefox mobile for example) do not support it...
+        </p>
+        <p>
+          The background will change over time. To disable to feature you can click on the logo above: 
+        </p>
+        <ul role="list">
+          <li class="logo">
+            <Logo class="enabled"/> : The background will change
+          </li>
+          <li class="logo">
+            <Logo class="disabled"/> : The background won't change
+          </li>
+        </ul>
+      </article>
       <Resource value={postsResource}
         onResolved={(page) => <>
           <PostList posts={page.data} />
